@@ -18,7 +18,6 @@
 # the parameters should be stored as attributes
 # called "name" and "symptoms" respectively
 
-
 #
 # 1.2)
 # Create a method called "add_test"
@@ -27,8 +26,6 @@
 # 2. the results of the test (bool)
 #
 # This information should be stored somehow.
-
-
 #
 # 1.3)
 # Create a method called has_covid()
@@ -49,6 +46,30 @@
 #    ['fever', 'cough', 'anosmia']
 
 
+class Patient:
+    def __init__(self, name: str, symptoms: list[str]):
+        self.name = name
+        self.symptoms = symptoms
+        self.tests = {}
+        
+    def add_test(self, test: str, results: bool):
+        self.tests[test] = results
+    
+    def has_covid(self) -> float:
+        if "covid" in self.tests:
+            if self.tests["covid"]:
+                prob = 0.99
+            else:
+                prob = 0.01
+        else:
+            prob = 0.05
+            covid_symptoms = ['fever', 'cough', 'anosmia']
+            for c_symptom in covid_symptoms:
+                if c_symptom in self.symptoms:
+                    prob += 0.1
+        return round(prob ,2)
+            
+    
 ######################
 
 # 2. In this exercise you will make an English Deck class made of Card classes
@@ -66,7 +87,35 @@
 # The constructor will create an English Deck (suits: Hearts, Diamonds, Clubs, Spades and values: A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K). It will create a list of cards that contain each of the existing cards in an English Deck.
 # Create a method called "shuffle" that shuffles the cards randomly. 
 # Create a method called "draw" that will draw a single card and print the suit and value. When a card is drawn, the card should be removed from the deck.
+import random 
 
+class Card:
+    def __init__(self, suit, value):
+        self.suit = suit
+        self.value = value
+        
+class Deck:
+    def __init__(self):
+        suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades']
+        values = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K']
+        self.cards = []
+        for suit in suits:
+            for value in values:
+                self.cards.append(Card(suit, value))
+                
+    def shuffle(self):
+        random.shuffle(self.cards)
+    
+    def draw(self):
+        card = self.cards.pop(0)
+        print(card.value, "of", card.suit)
+                
+# ------
+deck = Deck()
+print(len(deck.cards))  # 52
+deck.shuffle()
+deck.draw()
+print(len(deck.cards))  # 51
 
 
 ###################
