@@ -107,8 +107,11 @@ class Deck:
         if len(self.cards) > 0:
             card = self.cards.pop(0)
             print(card.value, "of", card.suit)
+            return card
         else:
             print("There are no cards in this deck")
+            return None
+
                 
 
 
@@ -123,11 +126,11 @@ class Deck:
 class PlaneFigure (metaclass=ABCMeta):
     @abstractmethod
     def compute_perimeter(self):
-        return NotImplementedError
+        raise NotImplementedError
     
     @abstractmethod
     def compute_surface(self):
-        return NotImplementedError
+        raise NotImplementedError
     
 # 3.2 Create a child class called "Triangle" that inherits from "PlaneFigure" and has as parameters in the constructor "base", "c1", "c2", "h". ("base" being the base, "c1" and "c2" the other two sides of the triangle and "h" the height). Implement the abstract methods with the formula of the triangle.
 class Triangle(PlaneFigure):
@@ -136,8 +139,10 @@ class Triangle(PlaneFigure):
         self.c1 = c1
         self.c2 = c2
         self.h = h
+
     def compute_perimeter(self):
         return self.base + self.c1 + self.c2
+    
     def compute_surface(self):
         return (0.5 * self.base) * self.h
     
