@@ -1,0 +1,17 @@
+# virtual environment
+.venv
+.venv.nosync/
+
+# Python caches
+__pycache__/
+.ruff_cache/
+
+# test and coverage output
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# notebooks and macOS
+.ipynb_checkpoints/
+.DS_Store

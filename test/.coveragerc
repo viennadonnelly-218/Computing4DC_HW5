@@ -1,0 +1,9 @@
+# Coverage settings (used via --cov-config=test/.coveragerc, see pyproject.toml).
+# HW6 only tests hw4.py and hw5.py, so the diabetes library modules are left out of the report.
+
+[run]
+omit =
+    */__init__.py
+    */engineering.py
+    */model.py
+    */toolkit.py
