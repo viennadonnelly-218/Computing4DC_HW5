@@ -58,17 +58,16 @@ class Patient:
     #    ['fever', 'cough', 'anosmia']
     def has_covid(self) -> float:
         if "covid" in self.tests:
-            if self.tests["covid"]:
-                prob = 0.99
-            else:
-                prob = 0.01
+            prob = 0.99 if self.tests["covid"] else 0.01
+
         else:
             prob = 0.05
             covid_symptoms = ['fever', 'cough', 'anosmia']
             for c_symptom in covid_symptoms:
                 if c_symptom in self.symptoms:
                     prob += 0.1
-        return round(prob ,2)
+        
+        return round(prob, 2)
         # returning the rounded value because instructions specify to return 0.99, 0.01, etc...
             
 
